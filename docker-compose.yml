@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  appointment-checker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - LOG_LEVEL=INFO
+      - SCREENSHOT_ON_ERROR=true
+    volumes:
+      - ./data:/data
+      - ./screenshots:/tmp
+    ports:
+      - "8800:8800"
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+{
+  "notification_providers": {
+    "ntfy": {
+      "endpoint": "https://your-ntfy-server.example.com/your-topic",
+      "title": "Appointment Available"
+    }
+  },
+  "dashboard": {
+    "refresh_rate_seconds": 60
+  }
+}

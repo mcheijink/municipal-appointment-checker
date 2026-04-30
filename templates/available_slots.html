@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Beschikbare Afspraken{% endblock %}
+
+{% block content %}
+<div class="page page-slots">
+    <div class="slots-container">
+        <div class="slots-list">
+            <h2>Beschikbare Afspraken</h2>
+            <button id="book-button" class="primary-button">Maak een Afspraak</button>
+
+            <div id="slots-content">
+                <p class="loading">Laden...</p>
+            </div>
+        </div>
+
+        <div id="detail-panel" class="detail-panel hidden">
+            <button class="close-button">&times;</button>
+            <div id="detail-content">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/slots.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initSlotsPage();
+        setInterval(refreshSlotsPage, 60000);
+    });
+
+    document.getElementById('book-button').addEventListener('click', () => {
+        const url = localStorage.getItem('appointment_url') || 'https://enschede.mijnafspraakmaken.nl/?product=5';
+        window.open(url, '_blank');
+    });
+</script>
+{% endblock %}

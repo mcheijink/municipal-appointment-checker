@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Instellingen{% endblock %}
+
+{% block content %}
+<div class="page page-settings">
+    <div class="settings-container">
+        <h2>Instellingen</h2>
+
+        <div class="settings-sections">
+            <!-- Checker Settings -->
+            <div class="settings-section">
+                <h3>Checker Instellingen</h3>
+                <div class="form-group">
+                    <label for="appointment_url">Afspraakpagina URL</label>
+                    <input type="url" id="appointment_url" name="appointment_url" class="setting-input">
+                </div>
+                <div class="form-group">
+                    <label for="check_interval_seconds">Controle-interval (seconden)</label>
+                    <input type="number" id="check_interval_seconds" name="check_interval_seconds" class="setting-input">
+                </div>
+                <div class="form-group">
+                    <label for="interval_jitter_fraction">Jitter-factor (0-1)</label>
+                    <input type="number" id="interval_jitter_fraction" name="interval_jitter_fraction" step="0.01" min="0" max="1" class="setting-input">
+                </div>
+                <div class="form-group">
+                    <label for="check_days_ahead">Zoeken naar dagen vooruit</label>
+                    <input type="number" id="check_days_ahead" name="check_days_ahead" class="setting-input">
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="settings-section">
+                <h3>Notificatie-instellingen</h3>
+                <div class="form-group">
+                    <label for="notification_provider">Provider</label>
+                    <select id="notification_provider" name="notification_provider" class="setting-input">
+                        <option value="ntfy">NTFY</option>
+                        <option value="email">Email</option>
+                        <option value="webhook">Webhook</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notification_endpoint">Provider Endpoint</label>
+                    <input type="text" id="notification_endpoint" name="notification_endpoint" class="setting-input">
+                </div>
+                <div class="form-group">
+                    <label for="notification_auth">Authenticatie (optioneel)</label>
+                    <input type="password" id="notification_auth" name="notification_auth" class="setting-input">
+                </div>
+                <div class="form-group">
+                    <button id="test-notification-btn" class="test-button">Test Notificatie</button>
+                    <div id="notification-result" class="test-result hidden"></div>
+                </div>
+            </div>
+
+            <!-- Data Retrieval Test -->
+            <div class="settings-section">
+                <h3>Gegevens Ophalen</h3>
+                <div class="form-group">
+                    <button id="test-data-btn" class="test-button">Test Gegevens Ophalen</button>
+                    <div id="data-result" class="test-result hidden"></div>
+                </div>
+            </div>
+
+            <!-- Dashboard Display -->
+            <div class="settings-section">
+                <h3>Dashboard-weergave</h3>
+                <div class="form-group">
+                    <label for="dashboard_refresh_rate_seconds">Vernieuwingsfrequentie (seconden)</label>
+                    <input type="number" id="dashboard_refresh_rate_seconds" name="dashboard_refresh_rate_seconds" class="setting-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initSettingsPage();
+    });
+</script>
+{% endblock %}

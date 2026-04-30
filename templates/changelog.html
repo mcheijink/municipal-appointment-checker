@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Wijzigingen in Beschikbaarheid{% endblock %}
+
+{% block content %}
+<div class="page page-changelog">
+    <div class="changelog-container">
+        <h2>Wijzigingen in Beschikbaarheid</h2>
+
+        <div id="changelog-content">
+            <p class="loading">Laden...</p>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/changelog.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initChangeLogPage();
+        setInterval(refreshChangeLogPage, 60000);
+    });
+</script>
+{% endblock %}
