@@ -7,7 +7,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY check_appointments.py dashboard.py database.py notification.py config.json ./
+COPY check_appointments.py dashboard.py database.py notification.py ./
+COPY config.example.json ./config.json
 COPY templates ./templates
 COPY static ./static
 
